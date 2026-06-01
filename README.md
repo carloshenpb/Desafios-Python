@@ -5,3 +5,6 @@
 
 Repositório para poder guardar os meus aprendizados durante o curso de python do canal Curso em vídeo
 
+### Projetos secundários com objetivo de aprendizado:
+    - [[manipulador-de-csv.md]]
+    -
