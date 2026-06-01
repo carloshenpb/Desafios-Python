@@ -29,6 +29,12 @@ Retorna:
     return opcao
 
 def título_simples(nome_menu):
+    """
+Exibe um título centralizado no terminal, emoldurado por linhas decorativas.
+
+Argumentos:
+    nome_menu (str): O texto que será exibido como título.
+"""
     print('==='*20)
     print(nome_menu.center(60))
     print('==='*20)
