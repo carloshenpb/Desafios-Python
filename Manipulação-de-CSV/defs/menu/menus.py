@@ -28,3 +28,7 @@ Retorna:
             break
     return opcao
 
+def título_simples(nome_menu):
+    print('==='*20)
+    print(nome_menu.center(60))
+    print('==='*20)
