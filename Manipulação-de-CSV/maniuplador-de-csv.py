@@ -8,14 +8,10 @@ while True:
     
     if opcao_user == 1:
         título_simples('CRIAÇÃO DE ARQUIVO')
-        while True:
-            nome_arquivo = str(input('Digite um nome para o arquivo que deseja criar: ')).strip()
-            testando_arq = verificar_csv(nome_arquivo)
-            if testando_arq == False:
-                break
-            else:
-                numero_colunas = int(input('Digite o número de colunas que deseja que o arquivo tenha: '))
-                criar_csv(nome_arq = nome_arquivo, num_col =numero_colunas )
+        nome_arquivo = str(input('Digite o nome que deseja por no arquivo: '))
+        numero_colunas = int(input('Digite o número de colunas que deseja que o arquivo tenha: '))
+        criar_csv(nome_arq = nome_arquivo, num_col = numero_colunas )
+    
     elif opcao_user == 3:
         print('ENCERRANDO....')
         break
