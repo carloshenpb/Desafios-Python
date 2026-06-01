@@ -18,3 +18,4 @@ Retorna:
         return False
     else:
         return True
+    
