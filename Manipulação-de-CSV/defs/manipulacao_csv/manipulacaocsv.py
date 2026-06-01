@@ -1,5 +1,6 @@
 from os.path import exists, join
 import csv
+from defs.menu.menus import so_opcoes
 
 pasta_padrao = r'C:\Users\carlo\PycharmProjects\Desafios\Manipulação-de-CSV\arquivos'
 
@@ -44,3 +45,18 @@ Argumentos:
         print(f'ERRO: {erro.__class__.__name__}')
     else:
         print('Arquivo criado com sucesso!')
+
+def exibir_arquivo(nome_arq):
+    caminho_arquivo = join(pasta_padrao, f'{nome_arq}.csv')
+
+    como_exibir = ('EXBIÇÃO SIMPLES', 'EXIBIÇÃO COM DICTREADER')
+    modo_exibir = so_opcoes(como_exibir)
+
+    if modo_exibir == 1:
+        with open(caminho_arquivo, "r", encoding = "utf-8") as arquivo:
+            leitor = csv.reader(arquivo)
+            for linha in leitor:
+                print(linha)
+    #elif modo_exibir == 2:
+        #with open(caminho_arquivo, "r", encoding="utf-8") as arquivo:
+           # leitor = csv.DictReader(arquivo)

@@ -22,7 +22,7 @@ Retorna:
             if opcao < 1 or opcao > len(opcoes):
                 raise ValueError
         except ValueError:
-            print('ERRO: Opção invália! Digite o número da opção que deseja.')
+            print('ERRO: Opção inválida! Digite o número da opção que deseja.')
             continue
         else:
             break
@@ -38,3 +38,20 @@ Argumentos:
     print('==='*20)
     print(nome_menu.center(60))
     print('==='*20)
+
+def so_opcoes (opcoes = ('Opção 1', 'Opção 2', 'Opção 3')):
+    print('___'*20)
+    for num, op in enumerate(opcoes, start=1):
+        print(f'[{num}° - {op}]'.center(60))
+    print('___'*20)
+    while True:
+        try:
+            opcao = int(input('Digite a opção que deseja: '))
+            if opcao < 1 or opcao > len(opcoes):
+                raise ValueError
+        except ValueError:
+            print('ERRO: Opção inválida! Digite o número da opção que deseja.')
+            continue
+        else:
+            break
+    return opcao
