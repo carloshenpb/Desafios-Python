@@ -1,5 +1,5 @@
 from defs.menu.menus import menu, título_simples
-from defs.manipulacao_csv.manipulacaocsv import verificar_csv
+from defs.manipulacao_csv.manipulacaocsv import verificar_csv, criar_csv
 
 menu_1 = ('CRIAR ARQUIVO', 'EDITAR ARQUIVO', 'ENCERRAR')
 
@@ -8,8 +8,14 @@ while True:
     
     if opcao_user == 1:
         título_simples('CRIAÇÃO DE ARQUIVO')
-        nome_arquivo = input('Digite um nome para o arquivo que deseja criar: ')
-        testando_arq = verificar_csv(nome_arquivo)
+        while True:
+            nome_arquivo = str(input('Digite um nome para o arquivo que deseja criar: ')).strip()
+            testando_arq = verificar_csv(nome_arquivo)
+            if testando_arq == False:
+                break
+            else:
+                numero_colunas = int(input('Digite o número de colunas que deseja que o arquivo tenha: '))
+                criar_csv(nome_arq = nome_arquivo, num_col =numero_colunas )
     elif opcao_user == 3:
         print('ENCERRANDO....')
         break
