@@ -57,6 +57,6 @@ def exibir_arquivo(nome_arq):
             leitor = csv.reader(arquivo)
             for linha in leitor:
                 print(linha)
-    #elif modo_exibir == 2:
-        #with open(caminho_arquivo, "r", encoding="utf-8") as arquivo:
-           # leitor = csv.DictReader(arquivo)
+    elif modo_exibir == 2:
+        with open(caminho_arquivo, "r", encoding="utf-8") as arquivo:
+            leitor = csv.DictReader(arquivo)
