@@ -64,8 +64,21 @@ def exibir_arquivo(nome_arq):
                     print(linha)
             elif modo_exibir == 2:
                 leitor = csv.DictReader(arquivo_lido)
-                for num_linha, linha in enumerate(leitor, 1):
-                    colunas_str = " | ".join(f"{chave}: {valor}" for chave, valor in linha.items())
-                    print(f'[{num_linha}° - linha]: {colunas_str}')
+                linhas = list(leitor)
+                if not linhas:
+                    print('O arquivo está vazio, não possui linhas preenchidas nele!')
+                else:
+                    larguras = {
+                    chave: max(len(chave), max(len(str(linha[chave])) for linha in linhas))
+                    for chave in linhas[0].keys()
+                    }
+                    for num_linha, linha in enumerate(linhas, 1):
+                        colunas = " | ".join(
+                            f'{chave} : {str(valor):<{larguras[chave]}}'
+                            for chave, valor in linha.items()
+                            )
+                        print(f'[{num_linha}° - linha]: {colunas}')            
     except Exception as erro:
         print(f'ERRO: {erro.__class__.__name__}: {erro}')
+
+
