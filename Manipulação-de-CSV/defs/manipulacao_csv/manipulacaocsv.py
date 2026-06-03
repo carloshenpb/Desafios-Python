@@ -81,4 +81,7 @@ def exibir_arquivo(nome_arq):
     except Exception as erro:
         print(f'ERRO: {erro.__class__.__name__}: {erro}')
 
-
+def adicionar_linha_csv(name_arq, num_linhas):
+    name_arq = name_arq.strip()
+    caminho_arquivo = join(pasta_padrao, f'{name_arq}.csv')
+    
