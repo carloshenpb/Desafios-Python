@@ -6,43 +6,39 @@ pasta_padrao = r'C:\Users\carlo\PycharmProjects\Desafios\Manipulação-de-CSV\ar
 
 def verificar_csv(arq_nome):
     """
-Verifica se um arquivo CSV já existe em um diretório padrão do sistema.
+    Verifica se um arquivo CSV já existe no diretório padrão do sistema.
 
-Argumentos:
-    arq_nome (str): O nome do arquivo a ser verificado (sem a extensão .csv).
+    Argumentos:
+        arq_nome (str): Nome do arquivo a ser verificado (sem a extensão .csv).
 
-Retorna:
-    bool: Retorna True se o arquivo já existir (bloqueado) 
-          ou False se o arquivo não existir (liberado para criação).
-"""
+    Retorna:
+        bool: True se o arquivo existir, False caso contrário.
+    """
+    arq_nome = arq_nome.strip()
     caminho_arquivo = join(pasta_padrao, f'{arq_nome}.csv')
-    if exists(caminho_arquivo):
-        return True
-    else:
-        return False
+    return exists(caminho_arquivo)
     
 def criar_csv(nome_arq, num_col):
     """
-Cria um novo arquivo CSV com cabeçalhos personalizados informados pelo usuário,
-salvando-o diretamente na pasta padrão configurada globalmente.
+    Cria um novo arquivo CSV com cabeçalhos personalizados informados pelo usuário,
+    salvando-o diretamente na pasta padrão configurada globalmente.
 
-Argumentos:
-    nome_arq (str): O nome do arquivo a ser criado (sem a extensão .csv).
-    num_col (int): A quantidade de colunas que o arquivo terá.
-"""
-
-    caminho_arquivo = join(pasta_padrao, f'{nome_arq}')
+    Argumentos:
+        nome_arq (str): Nome do arquivo a ser criado (sem a extensão .csv).
+        num_col (int): Quantidade de colunas que o arquivo terá.
+    """
+    nome_arq = nome_arq.strip()
+    caminho_arquivo = join(pasta_padrao, f'{nome_arq}.csv')
     cabecalho = []
-    for c in range(0, num_col):
-        nome_col = str(input(f'Digite o nome da {c+1}° coluna: '))
-        cabecalho.append(nome_col)
-    
+    for c in range(num_col):
+        coluna = str(input(f'Digite o nome da {c+1}° coluna: '))
+        cabecalho.append(coluna)
     try:
-        with open(caminho_arquivo, "w", newline = "", encoding = "utf-8") as arquivo_novo: 
-            criar_arquivo = csv.DictWriter(arquivo_novo, fieldnames = cabecalho)
-            criar_arquivo.writeheader()
+        with open(caminho_arquivo, "x", newline="", encoding="utf-8") as arquivo_novo:
+            escritor = csv.DictWriter(arquivo_novo, fieldnames=cabecalho)
+            escritor.writeheader()
     except Exception as erro:
-        print(f'ERRO: {erro.__class__.__name__}')
+        print(f'ERRO: {erro.__class__.__name__} : {erro}')
     else:
         print('Arquivo criado com sucesso!')
 
