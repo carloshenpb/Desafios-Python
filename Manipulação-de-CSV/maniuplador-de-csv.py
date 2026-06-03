@@ -1,5 +1,5 @@
 from defs.menu.menus import menu, título_simples
-from defs.manipulacao_csv.manipulacaocsv import verificar_csv, criar_csv
+from defs.manipulacao_csv.manipulacaocsv import verificar_csv, criar_csv, exibir_arquivo
 
 menu_1 = ('CRIAR ARQUIVO', 'EDITAR ARQUIVO','EXIBIR ARQUIVO' , 'ENCERRAR')
 
@@ -13,8 +13,15 @@ while True:
             criar_csv(nome_arq=nome_arquivo, num_col=numero_colunas)
         else:
             print('xxx'*20)
-            print('ERRO: Esse arquivo já existe!')
+            print('ERRO: Esse arquivo já existe!'.center(60))
             print('xxx'*20)
+    elif opcao_user == 2:
+        print('!!!!!!!')
+    elif opcao_user == 3:
+        título_simples('EXIBIÇÃO DE ARQUIVOS')
+        nome_arquivo = str(input('Digite o nome que deseja por no arquivo: ')).strip()
+        exibir_arquivo(nome_arquivo)
+            
     elif opcao_user == 4:
         print('ENCERRANDO....')
         break

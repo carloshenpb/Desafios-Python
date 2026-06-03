@@ -43,16 +43,29 @@ def criar_csv(nome_arq, num_col):
         print('Arquivo criado com sucesso!')
 
 def exibir_arquivo(nome_arq):
+    """
+    Exibe o conteúdo de um arquivo CSV existente no diretório padrão,
+    permitindo ao usuário escolher entre dois modos de exibição.
+
+    Argumentos:
+        nome_arq (str): Nome do arquivo a ser exibido (sem a extensão .csv).
+    """
+    nome_arq = nome_arq.strip()
     caminho_arquivo = join(pasta_padrao, f'{nome_arq}.csv')
 
     como_exibir = ('EXBIÇÃO SIMPLES', 'EXIBIÇÃO COM DICTREADER')
     modo_exibir = so_opcoes(como_exibir)
 
-    if modo_exibir == 1:
-        with open(caminho_arquivo, "r", encoding = "utf-8") as arquivo:
-            leitor = csv.reader(arquivo)
-            for linha in leitor:
-                print(linha)
-    elif modo_exibir == 2:
-        with open(caminho_arquivo, "r", encoding="utf-8") as arquivo:
-            leitor = csv.DictReader(arquivo)
+    try:
+        with open(caminho_arquivo, "r", encoding="utf-8") as arquivo_lido:
+            if modo_exibir == 1:
+                leitor = csv.reader(arquivo_lido)
+                for linha in leitor:
+                    print(linha)
+            elif modo_exibir == 2:
+                leitor = csv.DictReader(arquivo_lido)
+                for num_linha, linha in enumerate(leitor, 1):
+                    colunas_str = " | ".join(f"{chave}: {valor}" for chave, valor in linha.items())
+                    print(f'[{num_linha}° - linha]: {colunas_str}')
+    except Exception as erro:
+        print(f'ERRO: {erro.__class__.__name__}: {erro}')
