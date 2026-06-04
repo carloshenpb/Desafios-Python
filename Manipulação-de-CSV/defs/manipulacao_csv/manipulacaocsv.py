@@ -81,7 +81,28 @@ def exibir_arquivo(nome_arq):
     except Exception as erro:
         print(f'ERRO: {erro.__class__.__name__}: {erro}')
 
-def adicionar_linha_csv(name_arq, num_linhas):
+def adicionar_linha_csv(name_arq, num_linhas=1):
     name_arq = name_arq.strip()
     caminho_arquivo = join(pasta_padrao, f'{name_arq}.csv')
+    
+    for linha in range(num_linhas, 1):
+        print(f'{linha}° linha: ')
+        dados_linha = []
+        try:
+            with open(caminho_arquivo, "r", encoding="utf-8") as arquivo:
+                dados_cabecalho = csv.reader(arquivo)
+                cabecalho = next(dados_cabecalho)
+        
+            for num_col, coluna in enumerate(cabecalho, 1):
+                dado_linha = str(input(f'[{num_col}° - Coluna "{coluna}"]: '))
+                dados_linha.append(dado_linha)
+        
+            with open(caminho_arquivo, "a", newline="", encoding="utf-8") as arquivo:
+                add_linha = csv.writer(arquivo)
+                add_linha.writerow(dados_linha)
+            print('Linha(s) adiconada(s) com')
+        except Exception as erro:
+            print(f'ERRO: {erro.__class__.__name__} : {erro}')
+ 
+            
     
