@@ -97,7 +97,7 @@ def adicionar_linha_csv(name_arq, num_linhas=1):
                 dados_cabecalho = csv.reader(arquivo)
                 cabecalho = next(dados_cabecalho)
 
-        for linha in range(1, num_linhas):
+        for linha in range(1, num_linhas + 1):
             print(f'{linha}° linha: ')
             dados_linha = []
             for num_col, coluna in enumerate(cabecalho, 1):
