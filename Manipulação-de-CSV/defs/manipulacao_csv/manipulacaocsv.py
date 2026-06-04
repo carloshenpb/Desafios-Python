@@ -111,3 +111,55 @@ def adicionar_linha_csv(name_arq, num_linhas=1):
     except Exception as erro:
             print(f'ERRO: {erro.__class__.__name__} : {erro}')
  
+def editar_linha_csv(nome_arq):
+    """
+    Exibe o conteúdo de um arquivo CSV e permite a edição controlada de um campo específico.
+    Valida rigorosamente as entradas do usuário (número da linha e nome da coluna) por meio 
+    de loops de repetição para evitar quebras por índices ou chaves inválidas.
+
+    Argumentos:
+    nome_arq (str): O nome do arquivo a ser editado (sem a extensão .csv).
+    """
+    nome_arq = nome_arq.strip()
+    caminho_arquivo = join(pasta_padrao, f"{nome_arq}.csv")
+
+    try:
+        with open(caminho_arquivo, "r", encoding="utf-8") as arquivo:
+            leitor = csv.DictReader(arquivo)
+            colunas = leitor.fieldnames
+            dados_arquivo = list(leitor)
+            print('~~~'*20)
+            for num_lin, linha in enumerate(dados_arquivo, 1):
+                print(f'{num_lin}° linha: {linha}')
+            print('~~~'*20)
+        while True:
+            try:
+                numero_linha = int(input('Digite o número da linha que deseja editar: '))
+                if 1 <= numero_linha <= len(dados_arquivo):
+                    break
+                print(f'ERRO: Escolha uma linha entre 1 e {len(dados_arquivo)}')
+            except ValueError:
+                print('ERRO: Digite um número inteiro válido!')
+        print('~~~'*20)
+        print(dados_arquivo[numero_linha - 1])
+        print('~~~'*20)
+        while True:
+            nome_coluna = str(input('Digite o nome da coluna que deseja editar: ')).strip()
+            if nome_coluna in colunas:
+                break
+            print(f'ERRO: A coluna "{nome_coluna}" não existe!')
+            print(f'Colunas existentes: {colunas}')
+        novo_valor = str(input(f'Digite um novo valor para coluna "{nome_coluna}": '))
+        dados_arquivo[numero_linha - 1][nome_coluna] = novo_valor   
+        with open(caminho_arquivo, "w", newline="", encoding="utf-8") as arquivo:
+            reescrever_arquivo = csv.DictWriter(arquivo, fieldnames=colunas)
+            reescrever_arquivo.writeheader()
+            reescrever_arquivo.writerows(dados_arquivo)
+        print('___'*20)
+        print('Arquivo alterado com sucesso!')
+        print('___'*20)
+    except Exception as erro:
+        print('xxx'*20)
+        print(f'ERRO: {erro.__class__.__name__} : {erro}')
+        print('xxx'*20)
+        
