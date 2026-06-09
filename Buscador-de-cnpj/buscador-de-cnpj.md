@@ -14,12 +14,17 @@
             - tel-1 : 0000-0000
             - tel-2 : 0000-0000
             - e-mail: emailexemplo@gmail.com
+        - Natureza Juridica
     -> Exibir os dados:
         - Em tabela 
         - De maneira simples
     -> Editar dados manualmente:
         - Adiconar empresa de maneira manual no arquivo .json
         - Editar dado salvo no arquivo .json
+    -> Filtrar CNPJ por condições como:
+        - cidade
+        - estado
+        - natureza juridica
 
 ### Materiais utilizados para pesquisa:
     -> -> Cofre pessoal do Obsidian. 
@@ -27,8 +32,7 @@
     -> Tutoriais no youtube.
     -> Documentação da API Brasil API (1.0.0): [[https://brasilapi.com.br/docs]]
 ### Funcionamento do código principal:
-    
-    [Início do Programa]
+        [Início do Programa]
          │
          ▼
 ┌─────────────────────────────────┐
@@ -47,25 +51,51 @@
          ├──► Opção 1: Buscar Novo CNPJ                      │
          │    │                                              │
          │    ▼                                              │
-         │   Fazer requisição à Brasil API ──► Tratar dados ─┤
-         │   e dar .append() na lista                        │
+         │   Fazer requisição à Brasil API ──────────────────┤
+         │   (Captura: Dados básicos + Natureza Jurídica)    │
+         │    │                                              │
+         │    ▼                                              │
+         │   Separar Cidade/UF + Montar Endereço Extenso ────┤
+         │    │                                              │
+         │    ▼                                              │
+         │   Dar .append() na lista em memória               │
          │                                                   │
          ├──► Opção 2: Exibir Empresas Salvas                │
          │    │                                              │
          │    ▼                                              │
-         │   Ler da memória ──► Exibir (Simples ou Tabela) ──┤
-         │                                                   │
-         ├──► Opção 3: Adicionar Manualmente                 │
+         │   Escolher formato: [1] Simples ou [2] Tabela ────┤
          │    │                                              │
          │    ▼                                              │
-         │   Pedir inputs do usuário ──► .append() na lista ─┤
+         │   Ler da memória ──► Renderizar dados ────────────┤
          │                                                   │
-         ├──► Opção 4: Editar Dado Existente                 │
+         ├──► Opção 3: Filtrar CNPJ (Novidade!)              │
+         │    │                                              │
+         │    ▼                                              │
+         │   Escolher tipo de filtro:                        │
+         │   ├── [A] Por Cidade                              │
+         │   ├── [B] Por Estado                              │
+         │   └── [C] Por Natureza Jurídica                   │
+         │    │                                              │
+         │    ▼                                              │
+         │   Varrer a lista verificando a condição ──────────┤
+         │    │                                              │
+         │    ▼                                              │
+         │   Exibir apenas os resultados correspondentes     │
+         │                                                   │
+         ├──► Opção 4: Adicionar Manualmente                 │
+         │    │                                              │
+         │    ▼                                              │
+         │   Pedir inputs (incluindo Natureza Jurídica)      │
+         │    │                                              │
+         │    ▼                                              │
+         │   Montar dicionário ──► .append() na lista ───────┤
+         │                                                   │
+         ├──► Opção 5: Editar Dado Existente                 │
          │    │                                              │
          │    ▼                                              │
          │   Buscar CNPJ na lista ──► Alterar chaves ────────┤
          │                                                   │
-         └──► Opção 5: Sair do Programa                      │
+         └──► Opção 6: Sair do Programa                      │
               │                                              │
               ▼                                              │
          ┌───────────────────────────────┐                   │
