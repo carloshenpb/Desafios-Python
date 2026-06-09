@@ -1,7 +1,7 @@
 # Manipulador de CSV (Python)
 
 ## Mini Projeto com objetivo de aprender sobre manipulação de arquivos .csv com python
-### Objetivos do projeto:
+### Objetivos:
     -> Criar arquivos .csv de maneira personalizada (Escolhendo quantidade e nome das colunas).
     -> Adicionar linhas a arquivos .csv.
     -> Manipular linhas especificas de arquivos .csv.
