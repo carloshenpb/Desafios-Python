@@ -40,6 +40,17 @@ Argumentos:
     print('==='*20)
 
 def so_opcoes (opcoes = ('Opção 1', 'Opção 2', 'Opção 3')):
+    """
+    Exibe um menu de opções numeradas e centralizadas, lê a escolha do usuário 
+    e garante a entrega de um valor inteiro correspondente a uma opção válida.
+
+    Argumentos:
+        opcoes (tuple, opcional): Uma tupla de strings contendo os nomes das opções. 
+                                  O padrão é ('Opção 1', 'Opção 2', 'Opção 3').
+
+    Retorna:
+        int: O número correspondente à opção válida selecionada pelo usuário.
+    """
     print('___'*20)
     for num, op in enumerate(opcoes, start=1):
         print(f'[{num}° - {op}]'.center(60))
