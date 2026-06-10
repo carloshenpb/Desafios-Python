@@ -30,7 +30,7 @@
     -> -> Cofre pessoal do Obsidian. 
     -> I.A (Claude e Gemini).
     -> Tutoriais no youtube.
-    -> Documentação da API Brasil API (1.0.0): [[https://brasilapi.com.br/docs]]
+    -> Documentação da API 
 ### Funcionamento do código principal:
         [Início do Programa]
          │
