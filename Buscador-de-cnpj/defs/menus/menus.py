@@ -38,17 +38,6 @@ def menu_completo(nome_do_menu='Menu 1', opcoes=('Opção 1', 'Opção 2', 'Opç
             
     return opcao
 
-def título_simples(nome_menu):
-    """
-Exibe um título centralizado no terminal, emoldurado por linhas decorativas.
-
-Argumentos:
-    nome_menu (str): O texto que será exibido como título.
-"""
-    print('==='*20)
-    print(nome_menu.center(60))
-    print('==='*20)
-
 def so_opcoes(opcoes=('Opção 1', 'Opção 2', 'Opção 3')):
     """
     Exibe um menu de opções numeradas e centralizadas, lê a escolha do usuário 

@@ -72,9 +72,9 @@
          │    │                                              │
          │    ▼                                              │
          │   Escolher tipo de filtro:                        │
-         │   ├── [A] Por Cidade                              │
-         │   ├── [B] Por Estado                              │
-         │   └── [C] Por Natureza Jurídica                   │
+         │   ├── [1] Por Cidade                              │
+         │   ├── [2] Por Estado                              │
+         │   └── [3] Por Natureza Jurídica                   │
          │    │                                              │
          │    ▼                                              │
          │   Varrer a lista verificando a condição ──────────┤
