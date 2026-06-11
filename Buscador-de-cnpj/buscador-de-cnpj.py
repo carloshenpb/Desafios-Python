@@ -1,4 +1,5 @@
-from defs.menus.menus import menu_completo
+from defs.menus.menus import menu_completo, título_simples
+from defs.dados_api.api_dados import adicionar_cnpj
 
 menu1_opcs = ['Buscar CNPJ', 'Exibir lista de CNPJ', 'Filtrar CNPJs', 'Adicionar dados manualmente', 'Editar dado manualmente', 'Sair']
 menu1_name = 'Buscador de CNPJ'
@@ -11,7 +12,9 @@ while True:
         print('SAINDO.....')
         break
     elif menu1 == 1:
-        print('buscar cnpj')
+        título_simples('BUSCAR CNPJs')
+        cnpj_user = str(input('Digite um CNPJ válido: '))
+        adicionar_cnpj(cnpj_user)
     elif menu1 == 2:
         print('exibições')
     elif menu1 == 3:

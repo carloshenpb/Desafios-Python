@@ -1,13 +1,75 @@
 import requests
+from os.path import join
+import json
 
-def buscar_cnpj(CNPJ):
-    resposta = requests.get(f"https://api.opencnpj.org/{CNPJ}")
-    print(resposta.status_code)
-    dados = resposta.json()
-    return dados
+pasta_padrao = r'C:\Users\carlo\PycharmProjects\Desafios\Buscador-de-cnpj\arquivos'
+arquivo_padrao = join(pasta_padrao, f"empresas.json")
 
-dados_empresa = buscar_cnpj('53868498000175')
-print(f'Razão social: {dados_empresa['razao_social']}')
-print(f'CNPJ: {dados_empresa['cnpj']}')
-print(f'Nome fantasia: {dados_empresa['nome_fantasia']}')
-print(f'Natureza Juridica: {dados_empresa['natureza_juridica']}')
+def buscar_cnpj(cnpj):
+    try:
+        requisicao = requests.get(f"https://api.opencnpj.org/{cnpj}", timeout=7)
+        requisicao.raise_for_status()
+        dados_api = requisicao.json()
+        return dados_api
+    except requests.exceptions.ConnectionError:
+        print('ERRO: Sem conexão com a internet!')
+        return None
+    except requests.exceptions.Timeout:
+        print('ERRO: A requisição demorou tempo demais!')
+        return None
+    except requests.exceptions.HTTPError as errohttp:
+        if errohttp.response.status_code in (400, 404):
+            print('ERRO: CNPJ inválido ou não encontrado!')
+        else:
+            print(f'ERRO: {errohttp.__class__.__name__} : {errohttp}')
+        return None
+
+def adicionar_cnpj(cnpj):
+    dados_cnpj = buscar_cnpj(cnpj)
+    if not dados_cnpj:
+        return
+    chave_empresa = {
+        "cnpj": dados_cnpj.get("cnpj")
+    }
+
+    try:
+        try:
+            with open(arquivo_padrao, "r", encoding="utf-8") as arquivo:
+                dados_empresas = json.load(arquivo)
+        except(FileNotFoundError, json.JSONDecodeError):
+            dados_empresas = {}
+
+        lista_de_telefones = []
+        for dados_telefone in dados_cnpj['telefones']:
+            lista_de_telefones.append(dados_telefone)
+
+        dados_empresas[chave_empresa['cnpj']] = {
+        "nome fantasia": dados_cnpj.get("nome_fantasia"),
+        "razão social": dados_cnpj.get("razao_social"),
+        "cnpj": dados_cnpj.get("cnpj"),
+        "natureza jurídica": dados_cnpj.get("natureza_juridica"),
+        "endereço":{
+            "tipo logradouro": dados_cnpj.get("tipo_logradouro"),
+            "logradouro": dados_cnpj.get("logradouro"),
+            "número da residência": dados_cnpj.get("numero"),
+            "complemento": dados_cnpj.get("complemento"),
+            "bairro": dados_cnpj.get("bairro"),
+            "municipio": dados_cnpj.get("municipio"),
+            "uf": dados_cnpj.get("uf")
+        },
+        "contatos":{
+            "e-mail": dados_cnpj.get("email"),
+        "telefones": lista_de_telefones
+        }
+        }
+        
+        with open(arquivo_padrao, "w", encoding="utf-8") as arquivo:
+            json.dump(dados_empresas[chave_empresa["cnpj"]],
+                       arquivo,
+                       ensure_ascii=False,
+                       indent=4
+                       )
+        print('Dados adicionados com sucesso!')
+    except Exception as erro:
+        print(f'ERRO: {erro.__class__.__name__} : {erro}')
+
