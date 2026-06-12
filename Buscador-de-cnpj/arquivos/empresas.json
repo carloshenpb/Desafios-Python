@@ -1,0 +1,191 @@
+{
+    "42234005001443": {
+        "nome fantasia": "RICA",
+        "razão social": "REGINAVES INDUSTRIA E COMERCIO DE AVES LTDA EM RECUPERACAO JUDICIAL",
+        "cnpj": "42234005001443",
+        "natureza jurídica": "Sociedade Empresária Limitada",
+        "endereço": {
+            "tipo logradouro": "ESTRADA",
+            "logradouro": "CARIBU",
+            "número da residência": "348",
+            "complemento": "E 418",
+            "bairro": "JACAREPAGUA",
+            "municipio": "RIO DE JANEIRO",
+            "uf": "RJ"
+        },
+        "contatos": {
+            "e-mail": "",
+            "telefones": []
+        }
+    },
+    "47425731000142": {
+        "nome fantasia": "",
+        "razão social": "PANTERA ALIMENTOS LTDA EM RECUPERACAO JUDICIAL",
+        "cnpj": "47425731000142",
+        "natureza jurídica": "Sociedade Empresária Limitada",
+        "endereço": {
+            "tipo logradouro": "RODOVIA",
+            "logradouro": "WALDOMIRO CORREA DE CAMARGO",
+            "número da residência": "00",
+            "complemento": "KM    60",
+            "bairro": "VILA MARTINS",
+            "municipio": "ITU",
+            "uf": "SP"
+        },
+        "contatos": {
+            "e-mail": "VITOR@PANTERA.COM.BR",
+            "telefones": [
+                {
+                    "ddd": "11",
+                    "número_telefone": "40243222"
+                }
+            ]
+        }
+    },
+    "12819074000214": {
+        "nome fantasia": "",
+        "razão social": "MAURICEA ALIMENTOS DO NORDESTE LTDA",
+        "cnpj": "12819074000214",
+        "natureza jurídica": "Sociedade Empresária Limitada",
+        "endereço": {
+            "tipo logradouro": "",
+            "logradouro": "BR 408 KM 55",
+            "número da residência": "S/N",
+            "complemento": "ENGENHO DIAMANTE",
+            "bairro": "ZONA RURAL",
+            "municipio": "NAZARE DA MATA",
+            "uf": "PE"
+        },
+        "contatos": {
+            "e-mail": "",
+            "telefones": []
+        }
+    },
+    "67620377000114": {
+        "nome fantasia": "",
+        "razão social": "MINERVA S.A.",
+        "cnpj": "67620377000114",
+        "natureza jurídica": "Sociedade Anônima Aberta",
+        "endereço": {
+            "tipo logradouro": "PROLONGAMENTO",
+            "logradouro": "AVENIDA ANTONIO MANCO BERNARDES",
+            "número da residência": "S/N",
+            "complemento": "",
+            "bairro": "ROTATORIA FAMILIA VILELA DE QUEIROZ",
+            "municipio": "BARRETOS",
+            "uf": "SP"
+        },
+        "contatos": {
+            "e-mail": "jose.ferreira@minervafoods.com",
+            "telefones": [
+                {
+                    "ddd": "17",
+                    "número_telefone": "33213355"
+                },
+                {
+                    "ddd": "17",
+                    "número_telefone": "33213343"
+                }
+            ]
+        }
+    },
+    "68067446001220": {
+        "nome fantasia": "FRIGOL",
+        "razão social": "FRIGOL S.A.",
+        "cnpj": "68067446001220",
+        "natureza jurídica": "Sociedade Anônima Fechada",
+        "endereço": {
+            "tipo logradouro": "RUA",
+            "logradouro": "ANA NERI",
+            "número da residência": "392",
+            "complemento": "",
+            "bairro": "VILA MARIA CRISTINA",
+            "municipio": "LENCOIS PAULISTA",
+            "uf": "SP"
+        },
+        "contatos": {
+            "e-mail": "NFE.ENTRADA@FRIGOL.COM.BR",
+            "telefones": [
+                {
+                    "ddd": "14",
+                    "número_telefone": "32693900"
+                },
+                {
+                    "ddd": "14",
+                    "número_telefone": "32693900"
+                }
+            ]
+        }
+    },
+    "17767435003346": {
+        "nome fantasia": "PIF PAF ALIMENTOS",
+        "razão social": "FRICARDE S/A INDUSTRIA E COMERCIO",
+        "cnpj": "17767435003346",
+        "natureza jurídica": "Sociedade Anônima Fechada",
+        "endereço": {
+            "tipo logradouro": "RUA",
+            "logradouro": "JUSSARA",
+            "número da residência": "1001",
+            "complemento": "PARTE",
+            "bairro": "ALDEINHA",
+            "municipio": "BARUERI",
+            "uf": "SP"
+        },
+        "contatos": {
+            "e-mail": "",
+            "telefones": []
+        }
+    },
+    "60498706000157": {
+        "nome fantasia": "SEDE ADMINISTRATIVA DA EMPRESA",
+        "razão social": "CARGILL AGRICOLA S A",
+        "cnpj": "60498706000157",
+        "natureza jurídica": "Sociedade Anônima Fechada",
+        "endereço": {
+            "tipo logradouro": "AVENIDA",
+            "logradouro": "DOUTOR CHUCRI ZAIDAN",
+            "número da residência": "1240",
+            "complemento": "ANDAR 6 AO 9",
+            "bairro": "VILA SAO FRANCISCO (ZONA SUL)",
+            "municipio": "SAO PAULO",
+            "uf": "SP"
+        },
+        "contatos": {
+            "e-mail": "ATENDIMENTO_CNPJ@CARGILL.COM",
+            "telefones": [
+                {
+                    "ddd": "11",
+                    "número_telefone": "50993311"
+                }
+            ]
+        }
+    },
+    "61286613000121": {
+        "nome fantasia": "",
+        "razão social": "FRIGORIFICO JAHU LTDA",
+        "cnpj": "61286613000121",
+        "natureza jurídica": "Sociedade Empresária Limitada",
+        "endereço": {
+            "tipo logradouro": "AVENIDA",
+            "logradouro": "CALOMBE",
+            "número da residência": "3010",
+            "complemento": "",
+            "bairro": "CHACARAS RIO PETROPOLIS",
+            "municipio": "DUQUE DE CAXIAS",
+            "uf": "RJ"
+        },
+        "contatos": {
+            "e-mail": "REGISTROFISCAL@RICHELIEU.CNT.BR",
+            "telefones": [
+                {
+                    "ddd": "21",
+                    "número_telefone": "36751000"
+                },
+                {
+                    "ddd": "21",
+                    "número_telefone": "36751000"
+                }
+            ]
+        }
+    }
+}

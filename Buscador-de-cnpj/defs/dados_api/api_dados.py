@@ -28,10 +28,7 @@ def adicionar_cnpj(cnpj):
     dados_cnpj = buscar_cnpj(cnpj)
     if not dados_cnpj:
         return
-    chave_empresa = {
-        "cnpj": dados_cnpj.get("cnpj")
-    }
-
+    
     try:
         try:
             with open(arquivo_padrao, "r", encoding="utf-8") as arquivo:
@@ -40,10 +37,16 @@ def adicionar_cnpj(cnpj):
             dados_empresas = {}
 
         lista_de_telefones = []
-        for dados_telefone in dados_cnpj['telefones']:
+        for telefone in dados_cnpj['telefones']:
+            dados_telefone = {
+                "ddd": telefone["ddd"],
+                "número_telefone": telefone["numero"]
+            }
             lista_de_telefones.append(dados_telefone)
 
-        dados_empresas[chave_empresa['cnpj']] = {
+        cnpj_empresa = dados_cnpj.get("cnpj")
+
+        dados_empresas[cnpj_empresa] = {
         "nome fantasia": dados_cnpj.get("nome_fantasia"),
         "razão social": dados_cnpj.get("razao_social"),
         "cnpj": dados_cnpj.get("cnpj"),
@@ -64,7 +67,7 @@ def adicionar_cnpj(cnpj):
         }
         
         with open(arquivo_padrao, "w", encoding="utf-8") as arquivo:
-            json.dump(dados_empresas[chave_empresa["cnpj"]],
+            json.dump(dados_empresas,
                        arquivo,
                        ensure_ascii=False,
                        indent=4
