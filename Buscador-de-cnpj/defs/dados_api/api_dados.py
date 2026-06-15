@@ -6,6 +6,17 @@ pasta_padrao = r'C:\Users\carlo\PycharmProjects\Desafios\Buscador-de-cnpj\arquiv
 arquivo_padrao = join(pasta_padrao, f"empresas.json")
 
 def buscar_cnpj(cnpj):
+    """
+    Realiza uma requisição HTTP para buscar as informações de um CNPJ em uma API externa.
+    Trata possíveis falhas de conexão, tempo de resposta (timeout) e erros de validação HTTP.
+
+    Argumentos:
+        cnpj (str): O número do CNPJ a ser consultado (apenas números ou formatado, dependendo da API).
+
+    Retorna:
+        dict: Um dicionário com os dados retornados pela API caso a requisição tenha sucesso.
+    None: Caso ocorra algum erro durante o processo.
+    """
     try:
         requisicao = requests.get(f"https://api.opencnpj.org/{cnpj}", timeout=7)
         requisicao.raise_for_status()
@@ -23,8 +34,19 @@ def buscar_cnpj(cnpj):
         else:
             print(f'ERRO: {errohttp.__class__.__name__} : {errohttp}')
         return None
-
+    except Exception as erro:
+        print(f'ERRO: {erro.__class__.__name__} : {erro}')
+        return None
+    
 def adicionar_cnpj(cnpj):
+    """
+    Busca os dados de um CNPJ na API, filtra e estrutura as informações desejadas 
+    (incluindo tratamento seguro para múltiplos telefones) e atualiza o arquivo JSON.
+    Garante estabilidade caso a chave de contatos telefônicos não seja retornada pela API.
+
+    Argumentos:
+        cnpj (str): O número do CNPJ a ser consultado e inserido no banco de dados.
+"""
     dados_cnpj = buscar_cnpj(cnpj)
     if not dados_cnpj:
         return
@@ -37,7 +59,7 @@ def adicionar_cnpj(cnpj):
             dados_empresas = {}
 
         lista_de_telefones = []
-        for telefone in dados_cnpj['telefones']:
+        for telefone in dados_cnpj.get("telefones", []):
             dados_telefone = {
                 "ddd": telefone["ddd"],
                 "número_telefone": telefone["numero"]

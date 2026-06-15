@@ -187,5 +187,29 @@
                 }
             ]
         }
+    },
+    "53868498000175": {
+        "nome fantasia": "QUALISERV",
+        "razão social": "QUALISERV LTDA",
+        "cnpj": "53868498000175",
+        "natureza jurídica": "Sociedade Empresária Limitada",
+        "endereço": {
+            "tipo logradouro": "RUA",
+            "logradouro": "CASSEMIRO DE ABREU",
+            "número da residência": "241",
+            "complemento": "CASA  SALA 01",
+            "bairro": "JOAO DE DEUS",
+            "municipio": "PETROLINA",
+            "uf": "PE"
+        },
+        "contatos": {
+            "e-mail": "FINANCEIRO@QUALISERVCONSULTORIA.COM.BR",
+            "telefones": [
+                {
+                    "ddd": "87",
+                    "número_telefone": "91774200"
+                }
+            ]
+        }
     }
 }
