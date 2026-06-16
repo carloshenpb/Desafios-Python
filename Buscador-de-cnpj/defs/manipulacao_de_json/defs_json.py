@@ -1,6 +1,6 @@
 import json
 from os.path import join
-from defs.menus.menus import so_opcoes
+from defs.menus.menus import so_opcoes, título_simples
 
 pasta_padrao = r'C:\Users\carlo\PycharmProjects\Desafios\Buscador-de-cnpj\arquivos'
 arquivo_padrao = join(pasta_padrao, f"empresas.json")
@@ -38,15 +38,33 @@ def exibir_json_tabela():
             print(f'{cnpj:<18}|{razao_social:<40}|{nome_fantasia:<30}|{municipio:<20}|{uf:<4}|{natureza_juridica:<30}')
 
 def filtrar_cnpj_especifico(cnpj):
+    """
+    Busca e exibe detalhadamente todas as informações de um CNPJ específico 
+    gravado no arquivo JSON local, incluindo dados de endereço e a lista de contatos.
+
+    Argumentos:
+        cnpj (str ou int): O CNPJ a ser localizado e exibido.
+    """
     cnpj = ''.join(caractere for caractere in str(cnpj) if caractere.isdigit())
     try:
         with open(arquivo_padrao, "r", encoding="utf-8") as arquivo:
-            empresas = json.load(arquivo_padrao)
-            if not cnpj in empresas.items():
+            empresas = json.load(arquivo)
+            if not cnpj in empresas:
                 print('ERRO: Este CNPJ não possuí registro!')
             else:
-                for dados in empresas[cnpj].items():
-                    print(f'Razão Social: {dados["razão social"]}')
-                    print(f'Nome Fantasia: {dados["nome fantasia"]}')
+                dados_empresa = empresas[cnpj]
+                título_simples(f'Dados da {dados_empresa.get("razão social")}')
+                print(f'Razão social : {dados_empresa.get("razão social")}')
+                print(f'CNPJ : {dados_empresa.get("cnpj")}')
+                print(f'Nome fantasia : {dados_empresa.get("nome fantasia")}')
+                print(f'Natureza Jurídica: {dados_empresa.get("natureza jurídica")}')
+                print('--'*60)
+                contatos = dados_empresa.get("contatos")
+                print('Contatos: ')
+                print(f'e-mail : {contatos.get("e-mail")}')
+                telefones = contatos.get("telefones", [])
+                for num, telefones in enumerate(telefones, start = 1):
+                    print(f'Telefone {num} : ({telefones.get("ddd")}) {telefones.get("número_telefone")}')
     except Exception as erro:
         print(f'ERRO: {erro.__class__.__name__} : {erro}')
+

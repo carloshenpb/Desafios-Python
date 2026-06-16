@@ -32,4 +32,4 @@ while True:
             filtrar_cnpj_especifico(cnpj_user)
         elif menu3 == 2:
             título_simples('Filtros padrões')
-            so_opcoes(opcoes=('Filtrar CNPJs por UF', 'Filtrar CNPJs por Munícipio', 'Filtrar CNPJs por Natureza Jurídica'))
+            

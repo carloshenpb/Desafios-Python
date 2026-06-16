@@ -10,20 +10,20 @@ def menu_completo(nome_do_menu='Menu 1', opcoes=('Opção 1', 'Opção 2', 'Opç
     Retorna:
         int: O número da opção válida digitada pelo usuário.
     """
-    largura_total = 70
+    largura_total = 60
     largura_opcao = 30  
     
-    print('—' * largura_total)
-    print(f'{nome_do_menu}'.center(largura_total))
-    print('—' * largura_total)
+    print('==' * largura_total)
+    print(f'{nome_do_menu}'.center(largura_total*2))
+    print('==' * largura_total)
     
     for num, op in enumerate(opcoes, start=1):
         texto_opcao = f'[{num}] - [{op}]'
         item_formatado = f'{texto_opcao:<{largura_opcao}}'
         
-        print(item_formatado.center(largura_total))
+        print(item_formatado.center(largura_total*2))
         
-    print('—' * largura_total)
+    print('==' * largura_total)
     
     while True:
         try:
@@ -45,9 +45,9 @@ Exibe um título centralizado no terminal, emoldurado por linhas decorativas.
 Argumentos:
     nome_menu (str): O texto que será exibido como título.
 """
-    print('==='*30)
-    print(nome_menu.center(90))
-    print('==='*30)
+    print('-='*60)
+    print(nome_menu.center(120))
+    print('=-'*60)
 
 def so_opcoes(opcoes=('Opção 1', 'Opção 2', 'Opção 3')):
     """
@@ -64,7 +64,7 @@ def so_opcoes(opcoes=('Opção 1', 'Opção 2', 'Opção 3')):
     largura_total = 60
     largura_opcao = 30  
     
-    print('—' * largura_total)
+    print('~~' * largura_total)
     
     for num, op in enumerate(opcoes, start=1):
         
@@ -72,9 +72,9 @@ def so_opcoes(opcoes=('Opção 1', 'Opção 2', 'Opção 3')):
         item_formatado = f'[ {texto_opcao:<{largura_opcao}} ]'
         
         
-        print(item_formatado.center(largura_total))
+        print(item_formatado.center(largura_total*2))
         
-    print('—' * largura_total)
+    print('~~' * largura_total)
     
     while True:
         try:
