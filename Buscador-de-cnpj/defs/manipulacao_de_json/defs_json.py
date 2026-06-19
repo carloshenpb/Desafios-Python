@@ -65,6 +65,64 @@ def filtrar_cnpj_especifico(cnpj):
                 telefones = contatos.get("telefones", [])
                 for num, telefones in enumerate(telefones, start = 1):
                     print(f'Telefone {num} : ({telefones.get("ddd")}) {telefones.get("número_telefone")}')
+                print('--'*60)
+                endereco = dados_empresa.get("endereço")
+                print(f'Endereço : {endereco.get("tipo logradouro")} {endereco.get("logradouro")}, {endereco.get("número da residência")}, {endereco.get("complemento")}')
+                print(f'Bairro : {endereco.get("bairro")}')
+                print(f'Cidade : {endereco.get("municipio")}-{endereco.get("uf")}')
+
     except Exception as erro:
         print(f'ERRO: {erro.__class__.__name__} : {erro}')
 
+def filtros_json_padrao():
+    filtros = ['Filtrar por UF', 'Filtrar por Cidade', 'Filtrar por NJ']
+    user = so_opcoes(filtros)
+    
+    with open(arquivo_padrao, "r", encoding="utf-8") as arquivo:
+        empresas = json.load(arquivo)
+    
+    if user == 1:
+        uf = str(input('Digite a UF: ')).strip().upper()
+        print('~~'*60)
+        print(f'Empresas localizadas em {uf}:')
+        print('~~'*60)
+        print(f'{"CNPJ":<18}|{"Razão Social":<40}|{"Município":<20}|{"Endereço":<40}|')
+        try:
+            for cnpj, dados_empresa in empresas.items():
+                 if (
+                "endereço" in dados_empresa
+                and dados_empresa["endereço"]["uf"] == uf
+                ):
+                     print('--'*60)
+                     razao_social = dados_empresa["razão social"][:40]
+                     cnpj = dados_empresa["cnpj"][:18]
+                     endereco = dados_empresa["endereço"]
+                     municipio = endereco.get("municipio")
+                     
+                     print(f'{cnpj:<18}|{razao_social:<40}|{municipio:<20}|{uf_empresa:<40}|')
+                     print('--'*60)
+        except Exception as e:
+            print(f'ERRO : {e.__class__.__name__} : {e}')
+    elif user == 2:
+        cidade = str(input('Digite a cidade: ')).strip().upper()
+        print('~~'*60)
+        print(f'Empresas localizadas em {cidade}:')
+        print('~~'*60)
+        print(f'{"CNPJ":<18}|{"Razão Social":<40}|{"Município":<20}|{"UF":<4}|')
+        try:
+            for cnpj, dados_empresa in empresas.items():
+                if(
+                    "municipio" in dados_empresa
+                    and dados_empresa["endereço"]["municipio"] == cidade
+                ):
+                    print('--'*60)
+                    razao_social = dados_empresa["razão social"][:40]
+                    cnpj = dados_empresa["cnpj"][:18]
+                    municipio = dados_empresa["endereço"]["municipio"][:20]
+                    uf_empresa = dados_empresa["endereço"]["uf"][:4]
+                    print(f'{cnpj:<18}|{razao_social:<40}|{municipio:<20}|{uf_empresa:<4}|')
+                    print('--'*60)
+        except Exception as e:
+            print(f'ERRO : {e.__class__.__name__}:{e}')
+    elif user == 3:
+        print('xxxx')

@@ -1,6 +1,6 @@
 from defs.menus.menus import menu_completo, título_simples, so_opcoes
 from defs.dados_api.api_dados import adicionar_cnpj
-from defs.manipulacao_de_json.defs_json import exibir_json_simples, exibir_json_tabela, filtrar_cnpj_especifico
+from defs.manipulacao_de_json.defs_json import exibir_json_simples, exibir_json_tabela, filtrar_cnpj_especifico, filtros_json_padrao
 
 menu1_opcs = ['Buscar CNPJ', 'Exibir lista de CNPJ', 'Filtrar CNPJs', 'Editar dado manualmente', 'Sair']
 menu1_name = 'BUSCADOR DE CNPJ'
@@ -32,4 +32,7 @@ while True:
             filtrar_cnpj_especifico(cnpj_user)
         elif menu3 == 2:
             título_simples('Filtros padrões')
+            filtros_json_padrao()
+
+
             
