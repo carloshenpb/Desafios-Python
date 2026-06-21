@@ -86,7 +86,7 @@ def filtros_json_padrao():
         print('~~'*60)
         print(f'Empresas localizadas em {uf}:')
         print('~~'*60)
-        print(f'{"CNPJ":<18}|{"Razão Social":<40}|{"Município":<20}|{"Endereço":<40}|')
+        print(f'{"CNPJ":<18}|{"Razão Social":<40}|{"Endereço":<40}|{"Bairro":<25}|{"Município":<25}|{"UF":<4}|')
         try:
             for cnpj, dados_empresa in empresas.items():
                  if (
@@ -94,12 +94,13 @@ def filtros_json_padrao():
                 and dados_empresa["endereço"]["uf"] == uf
                 ):
                      print('--'*60)
-                     razao_social = dados_empresa["razão social"][:40]
-                     cnpj = dados_empresa["cnpj"][:18]
-                     endereco = dados_empresa["endereço"]
-                     municipio = endereco.get("municipio")
-                     
-                     print(f'{cnpj:<18}|{razao_social:<40}|{municipio:<20}|{uf_empresa:<40}|')
+                     razao_social = dados_empresa.get("razão social", "Não informada")[:40]
+                     dados_endereco = dados_empresa.get("endereço")
+                     municipio = dados_endereco.get("municipio", "Não informado")[:25]
+                     uf_empresa = dados_endereco.get("uf", "Não Informada")[:4]
+                     endereco_extenso = f'{dados_endereco.get("tipo logradouro")} {dados_endereco.get("logradouro")[:30]}, {dados_endereco.get("número da residência")}'
+                     bairro = dados_endereco.get("bairro")[:25]
+                     print(f'{cnpj:<18}|{razao_social:<40}|{endereco_extenso:<40}|{bairro:<25}|{municipio:<25}|{uf_empresa:<4}|')
                      print('--'*60)
         except Exception as e:
             print(f'ERRO : {e.__class__.__name__} : {e}')
@@ -108,7 +109,7 @@ def filtros_json_padrao():
         print('~~'*60)
         print(f'Empresas localizadas em {cidade}:')
         print('~~'*60)
-        print(f'{"CNPJ":<18}|{"Razão Social":<40}|{"Município":<20}|{"UF":<4}|')
+        print(f'{"CNPJ":<18}|{"Razão Social":<40}|{"Endereço":<40}|{"Bairro":<25}|{"Município":<25}|{"UF":<4}|')
         try:
             for cnpj, dados_empresa in empresas.items():
                 if(
@@ -116,11 +117,13 @@ def filtros_json_padrao():
                     and dados_empresa["endereço"]["municipio"] == cidade
                 ):
                     print('--'*60)
-                    razao_social = dados_empresa["razão social"][:40]
-                    cnpj = dados_empresa["cnpj"][:18]
-                    municipio = dados_empresa["endereço"]["municipio"][:20]
-                    uf_empresa = dados_empresa["endereço"]["uf"][:4]
-                    print(f'{cnpj:<18}|{razao_social:<40}|{municipio:<20}|{uf_empresa:<4}|')
+                    razao_social = dados_empresa.get("razão social", "Não informada")[:40]
+                    dados_endereco = dados_empresa.get("endereço")
+                    municipio = dados_endereco.get("municipio", "Não informado")[:25]
+                    uf_empresa = dados_endereco.get("uf", "Não Informada")[:4]
+                    endereco_extenso = f'{dados_endereco.get("tipo logradouro")} {dados_endereco.get("logradouro")[:30]}, {dados_endereco.get("número da residência")}'
+                    bairro = dados_endereco.get("bairro")[:25]
+                    print(f'{cnpj:<18}|{razao_social:<40}|{endereco_extenso:<40}|{bairro:<25}|{municipio:<25}|{uf_empresa:<4}|')
                     print('--'*60)
         except Exception as e:
             print(f'ERRO : {e.__class__.__name__}:{e}')
