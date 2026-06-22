@@ -83,49 +83,93 @@ def filtros_json_padrao():
     
     if user == 1:
         uf = str(input('Digite a UF: ')).strip().upper()
-        print('~~'*60)
-        print(f'Empresas localizadas em {uf}:')
-        print('~~'*60)
-        print(f'{"CNPJ":<18}|{"Razão Social":<40}|{"Endereço":<40}|{"Bairro":<25}|{"Município":<25}|{"UF":<4}|')
         try:
+            teste_empresa = False
             for cnpj, dados_empresa in empresas.items():
                  if (
                 "endereço" in dados_empresa
                 and dados_empresa["endereço"]["uf"] == uf
                 ):
-                     print('--'*60)
+                     if teste_empresa == False:
+                         print('~~'*60)
+                         print(f'Empresas localizadas em {uf}:')
+                         print('~~'*60)
+                         print(f'{"CNPJ":<18}|{"Razão Social":<40}|{"Endereço":<40}|{"Bairro":<25}|{"Município":<25}|{"UF":<4}|')
+                         print('=='*80)
+                     teste_empresa = True
                      razao_social = dados_empresa.get("razão social", "Não informada")[:40]
                      dados_endereco = dados_empresa.get("endereço")
                      municipio = dados_endereco.get("municipio", "Não informado")[:25]
                      uf_empresa = dados_endereco.get("uf", "Não Informada")[:4]
-                     endereco_extenso = f'{dados_endereco.get("tipo logradouro")} {dados_endereco.get("logradouro")[:30]}, {dados_endereco.get("número da residência")}'
+                     logradouro = dados_endereco.get("logradouro", "Não informado")[:30]
+                     tipo_logradouro = dados_endereco.get("tipo logradouro", "Não informado")
+                     numero_residencia = dados_endereco.get("número da residência", "S/N")
+                     complemento = dados_endereco.get("complemento", "S/C")
+                     endereco_extenso = f'{tipo_logradouro} {logradouro}, {numero_residencia}, {complemento}'[:40]
                      bairro = dados_endereco.get("bairro")[:25]
                      print(f'{cnpj:<18}|{razao_social:<40}|{endereco_extenso:<40}|{bairro:<25}|{municipio:<25}|{uf_empresa:<4}|')
-                     print('--'*60)
+                     print('--'*80)
+            if teste_empresa == False:
+                print('xx'*60)
+                print(f'AINDA NÃO EXISTEM EMPRESAS CADASTRADAS NA UF {uf}')
+                print('xx'*60)
         except Exception as e:
             print(f'ERRO : {e.__class__.__name__} : {e}')
     elif user == 2:
         cidade = str(input('Digite a cidade: ')).strip().upper()
-        print('~~'*60)
-        print(f'Empresas localizadas em {cidade}:')
-        print('~~'*60)
-        print(f'{"CNPJ":<18}|{"Razão Social":<40}|{"Endereço":<40}|{"Bairro":<25}|{"Município":<25}|{"UF":<4}|')
         try:
+            teste_empresa = False
             for cnpj, dados_empresa in empresas.items():
                 if(
-                    "municipio" in dados_empresa
+                    "endereço" in dados_empresa
                     and dados_empresa["endereço"]["municipio"] == cidade
                 ):
-                    print('--'*60)
+                    if teste_empresa == False:
+                        print('~~'*60)
+                        print(f'Empresas localizadas em {cidade}:')
+                        print('~~'*60)
+                        print(f'{"CNPJ":<18}|{"Razão Social":<40}|{"Endereço":<40}|{"Bairro":<25}|{"Município":<25}|{"UF":<4}|')
+                        print('=='*80)
+                    teste_empresa == True
                     razao_social = dados_empresa.get("razão social", "Não informada")[:40]
                     dados_endereco = dados_empresa.get("endereço")
                     municipio = dados_endereco.get("municipio", "Não informado")[:25]
                     uf_empresa = dados_endereco.get("uf", "Não Informada")[:4]
-                    endereco_extenso = f'{dados_endereco.get("tipo logradouro")} {dados_endereco.get("logradouro")[:30]}, {dados_endereco.get("número da residência")}'
+                    tipo_logradouro = dados_endereco.get("tipo logradouro", "Não informado")
+                    logradouro = dados_endereco.get("logradouro", "Não informado")[:30]
+                    numero_residencia = dados_endereco.get("número da residência", "S/N")
+                    complemento = dados_endereco.get("complemento", "S/C")
+                    endereco_extenso = f'{tipo_logradouro} {logradouro}, {numero_residencia}, {complemento}'[:40]
                     bairro = dados_endereco.get("bairro")[:25]
                     print(f'{cnpj:<18}|{razao_social:<40}|{endereco_extenso:<40}|{bairro:<25}|{municipio:<25}|{uf_empresa:<4}|')
-                    print('--'*60)
+                    print('--'*80)
+            if teste_empresa == False:
+                print('xx'*60)
+                print(f'NÃO EXISTEM EMPRESAS CADASTRADAS NO MUNICIPIO DE {cidade}')
+                print('xx'*60)
         except Exception as e:
             print(f'ERRO : {e.__class__.__name__}:{e}')
     elif user == 3:
-        print('xxxx')
+        natureza_juridica = str(input('Digite a natureza jurídica: ')).strip().title()
+        try:
+            teste_empresa = False
+            for cnpj, dados_empresa in empresas.items():
+                if("natureza jurídica" in dados_empresa 
+                and dados_empresa["natureza jurídica"] == natureza_juridica):
+                    if teste_empresa == False:
+                        print('~~'*60)
+                        print(f'{natureza_juridica}: ')
+                        print('~~'*60)
+                        print(f'{"CNPJ":<18}|{"Razão Social":<40}|{"Natureza Jurídica":<30}')
+                        print('=='*60)
+                    teste_empresa = True
+                    razao_social = dados_empresa.get("razão social", "Não informada")[:40]
+                    ntrza_juri = dados_empresa.get("natureza jurídica")
+                    print(f'{cnpj:<18}|{razao_social:<40}|{ntrza_juri:<30}')
+                    print('--'*80)
+            if teste_empresa == False:
+                print('xx'*60)
+                print(f'NÃO EXISTEM EMPRESAS DO TIPO {natureza_juridica.upper()}')
+                print('xx'*60)
+        except Exception as e:
+            print(f'ERRO : {e.__class__.__name__}:{e}')
