@@ -6,6 +6,7 @@ menu1_opcs = ['Buscar CNPJ', 'Exibir lista de CNPJ', 'Filtrar CNPJs', 'Editar da
 menu1_name = 'BUSCADOR DE CNPJ'
 menu2_opcs = ['Exibição simples', 'Exibição em tabela']
 menu3_opcs = ['Filtrar dados de um unico CNPJ', 'Outros Filtros']
+menu4_opcs = ['Adicionar Empresa Manualmente', 'Adicionar dados a CNPJ existente', 'Editar dados de CNPJ existente']
 
 while True:
     menu1 = menu_completo(nome_do_menu = menu1_name, opcoes = menu1_opcs)
@@ -33,4 +34,5 @@ while True:
             título_simples('Filtros padrões')
             filtros_json_padrao()
     elif menu1 == 4:
-        print('xxx')
+        menu4 = menu_completo('Edição Manual de Dados', menu4_opcs)
+        

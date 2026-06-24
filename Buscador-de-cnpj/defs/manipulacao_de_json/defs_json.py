@@ -75,6 +75,11 @@ def filtrar_cnpj_especifico(cnpj):
         print(f'ERRO: {erro.__class__.__name__} : {erro}')
 
 def filtros_json_padrao():
+    """
+    Disponibiliza um menu interativo para filtrar as empresas cadastradas no arquivo JSON.
+    Permite a busca segmentada por Unidade Federativa (UF), Município ou Natureza Jurídica,
+    exibindo os resultados em formato de tabela organizada.
+    """
     filtros = ['Filtrar por UF', 'Filtrar por Cidade', 'Filtrar por NJ']
     user = so_opcoes(filtros)
     
@@ -106,7 +111,7 @@ def filtros_json_padrao():
                      numero_residencia = dados_endereco.get("número da residência", "S/N")
                      complemento = dados_endereco.get("complemento", "S/C")
                      endereco_extenso = f'{tipo_logradouro} {logradouro}, {numero_residencia}, {complemento}'[:40]
-                     bairro = dados_endereco.get("bairro")[:25]
+                     bairro = dados_endereco.get("bairro", "Não informado")[:25]
                      print(f'{cnpj:<18}|{razao_social:<40}|{endereco_extenso:<40}|{bairro:<25}|{municipio:<25}|{uf_empresa:<4}|')
                      print('--'*80)
             if teste_empresa == False:
@@ -130,7 +135,7 @@ def filtros_json_padrao():
                         print('~~'*60)
                         print(f'{"CNPJ":<18}|{"Razão Social":<40}|{"Endereço":<40}|{"Bairro":<25}|{"Município":<25}|{"UF":<4}|')
                         print('=='*80)
-                    teste_empresa == True
+                    teste_empresa = True
                     razao_social = dados_empresa.get("razão social", "Não informada")[:40]
                     dados_endereco = dados_empresa.get("endereço")
                     municipio = dados_endereco.get("municipio", "Não informado")[:25]
@@ -173,3 +178,5 @@ def filtros_json_padrao():
                 print('xx'*60)
         except Exception as e:
             print(f'ERRO : {e.__class__.__name__}:{e}')
+
+#def adicionar_dados_json():
