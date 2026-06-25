@@ -127,7 +127,7 @@
             "tipo logradouro": "RUA",
             "logradouro": "JOAQUIM NABUCO",
             "número da residência": "541",
-            "complemento": "SALA  510                       5 ANDAR                   TRADE CENTER DOM CAM",
+            "complemento": "SALA  510   5 ANDAR TRADE CENTER DOM CAM",
             "bairro": "CENTRO",
             "municipio": "PETROLINA",
             "uf": "PE"
@@ -499,6 +499,30 @@
                 {
                     "ddd": "71",
                     "número_telefone": "96308914"
+                }
+            ]
+        }
+    },
+    "434567888000190": {
+        "nome fantasia": "Jairzinho Bar",
+        "razão social": "Jair Almeida Lalá",
+        "cnpj": "434567888000190",
+        "natureza jurídica": "Empresário (Individual)",
+        "endereço": {
+            "tipo logradouro": "Rua",
+            "logradouro": "Vai e Vem",
+            "número da residência": "087",
+            "complemento": "Em frente a Ilha do Retiro",
+            "bairro": "Ibura",
+            "municipio": "Jaboatão dos Guararapes",
+            "uf": "PE"
+        },
+        "contatos": {
+            "e-mail": "jairzinhobarofc@kamehameha.com",
+            "telefones": [
+                {
+                    "ddd": "87",
+                    "número_telefone": "991223344"
                 }
             ]
         }

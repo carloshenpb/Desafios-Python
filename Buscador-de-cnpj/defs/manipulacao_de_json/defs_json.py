@@ -179,4 +179,59 @@ def filtros_json_padrao():
         except Exception as e:
             print(f'ERRO : {e.__class__.__name__}:{e}')
 
-#def adicionar_dados_json():
+def adicionar_dados_json():
+    print('Insira os dados para adicionar uma nova empresa manualmente:')
+    cnpj = str(input('Digite o CNPJ: ')).strip().replace(".", "").replace("-", "").replace("/", "")
+    nome_fantasia = str(input('Nome fantasia: ')).strip()
+    razao_social = str(input('Razão social: ')).strip()
+    natureza_juridica = str(input('Natureza Jurídica: ')).strip()
+    print('~~'*60)
+    print('Endereço:')
+    print('~~'*60)
+    endereco = {
+        "tipo logradouro" : str(input('Tipo Logradouro: ')).strip(),
+        "logradouro" : str(input('Logradouro: ')).strip(),
+        "número da residência" : str(input('Número: ')).strip(),
+        "complemento" : str(input('Complemento: ')).strip(),
+        "bairro" : str(input('Bairro: ')).strip(),
+        "municipio" : str(input('Cidade: ')).strip(),
+        "uf" : str(input('UF: ')).strip()
+    }
+    print('~~'*60)
+    print('Contatos:')
+    print('~~'*60)
+    lista_de_telefones = []
+    contadordetelefones = int(input('Quantos números deseja adicionar: '))
+    for c in range(1, contadordetelefones):
+        telefone = {
+            "ddd" : str(input('Digite o DDD: ')).strip(),
+            "número_telefone" : str(input('Digite o número de telefone: ')).strip()
+        }
+        lista_de_telefones.append(telefone)
+    contatos = {
+        "e-mail" : str(input('Digite o E-mail: ')).strip(),
+        "telefones" : lista_de_telefones
+    }
+    try:
+        with open(arquivo_padrao, "r", encoding="utf-8") as arquivo:
+            dados_empresas = json.load(arquivo)
+        
+        dados_empresas[cnpj] = {
+            "nome fantasia" : nome_fantasia,
+            "razão social" : razao_social,
+            "cnpj" : cnpj,
+            "natureza jurídica" : natureza_juridica,
+            "endereço" : endereco,
+            "contatos" : contatos
+        }
+
+        with open(arquivo_padrao, "w", encoding="utf-8") as arquivo:
+            json.dump(dados_empresas,
+                      arquivo,
+                      ensure_ascii=False,
+                      indent=4
+                      )
+        print('Dados adicionados com sucesso!')
+    except Exception as erro:
+        print(f'ERRO: {erro.__class__.__name__} : {erro}')
+    
