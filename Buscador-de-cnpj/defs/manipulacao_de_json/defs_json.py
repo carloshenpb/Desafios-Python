@@ -250,7 +250,31 @@ def edicao_dados_cnpj(cnpj):
         print('**'*60)
         if dado_editar in dados_empresa:
             if dado_editar == 'contatos':
-                pass
+                contatos = dados_empresa ['contatos']   
+                print(f'e-mail : {contatos['e-mail']}')
+                telefones = contatos.get('telefones', [])
+                print('telefones : ')
+                for num, telefone in enumerate(telefones, start=1):
+                    print(f' -> Telefone {num} : ({telefone.get("ddd")}) {telefone.get("número_telefone")}')
+                editar_contato = str(input('Digite o campo que deseja alterar: ')).strip().lower()
+                if editar_contato in contatos:
+                    if editar_contato == 'e-mail':
+                        novo_email = str(input('Digite um novo e-mail: '))
+                        contatos['e-mail'] = novo_email
+                    elif editar_contato == 'telefones':
+                        editar_telefone = int(input('Digite o indice do telefone que deseja editar: '))
+                        indice_real = editar_telefone - 1
+                        if 0 <= indice_real < len(telefones):
+                            ddd_novo = int(input('Digite o "DDD": '))
+                            tel_novo = int(input('DIgite o número novo: '))
+                            telefones[indice_real] = {
+                                'ddd' : ddd_novo,
+                                'número_telefone' : tel_novo
+                            }
+                        else:
+                            print('Opção de telefone Inválida!')
+                else:
+                    print(f'ERRO: A chave {editar_contato} não existe!')
             elif dado_editar == 'endereço':
                 endereco = dados_empresa['endereço']
                 for chave, valor in endereco.items():
