@@ -1,4 +1,4 @@
-from defs.menus.menus import menu_completo, título_simples, so_opcoes
+from defs.menus.menus import menu_completo, título_simples
 from defs.dados_api.api_dados import adicionar_cnpj
 from defs.manipulacao_de_json.defs_json import exibir_json_simples, exibir_json_tabela, filtrar_cnpj_especifico, filtros_json_padrao, adicionar_dados_json, edicao_dados_cnpj
 
