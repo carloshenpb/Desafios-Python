@@ -234,4 +234,43 @@ def adicionar_dados_json():
         print('Dados adicionados com sucesso!')
     except Exception as erro:
         print(f'ERRO: {erro.__class__.__name__} : {erro}')
-    
+
+def edicao_dados_cnpj(cnpj):
+    cnpj = ''.join(caractere for caractere in str(cnpj) if caractere.isdigit())
+    filtrar_cnpj_especifico(cnpj)
+    print('-='*60)
+    dado_editar = str(input('Digite o campo que deseja editar: ')).strip().lower()
+    try:
+        with open(arquivo_padrao, "r", encoding="utf-8") as arquivo:
+            empresas = json.load(arquivo)
+    except Exception as erro:
+        print(f'ERRO AO ABRIR O ARQUIVO: {erro.__class__.__name__} -> {erro} ')
+    try:
+        dados_empresa = empresas[cnpj]
+        print('**'*60)
+        if dado_editar in dados_empresa:
+            if dado_editar == 'contatos':
+                pass
+            elif dado_editar == 'endereço':
+                endereco = dados_empresa['endereço']
+                for chave, valor in endereco.items():
+                    print(f'{chave} : {valor}')
+                print('--'*60)
+                editar_endereco = str(input('Digite o campo que deseja editar: ')).strip().lower()
+                if editar_endereco in endereco:
+                    endereco[editar_endereco] = str(input(f'Digite um valor novo para o campo {editar_endereco}: '))
+                else:
+                    print(f'ERRO: A chave {editar_endereco} não existe!')
+            else:
+                dado_novo = str(input(f'Digite um novo valor para {dado_editar}: '))
+                dados_empresa[dado_editar] = dado_novo
+        else:
+            print(f'ERRO: A chave {dado_editar} não existe!')
+        print('**'*60)
+        with open(arquivo_padrao, "w", encoding="utf-8") as arquivo:
+            json.dump(empresas,
+                      arquivo,
+                      ensure_ascii=False,
+                      indent=4)
+    except Exception as erro:
+        print(f'ERRO: {erro.__class__.__name__} -> {erro}')
