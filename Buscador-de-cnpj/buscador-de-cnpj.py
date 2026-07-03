@@ -36,7 +36,7 @@ while True:
     elif menu1 == 4:
         menu4 = menu_completo('Edição Manual de Dados', menu4_opcs)
         if menu4 == 1:
-            título_simples = ('Adição de Empresa')
+            título_simples('Adição de Empresa')
             adicionar_dados_json()
         elif menu4 == 2:
             título_simples = ('Edição de dados')

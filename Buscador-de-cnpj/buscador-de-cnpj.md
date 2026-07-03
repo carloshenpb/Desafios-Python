@@ -32,4 +32,21 @@
     -> Tutoriais no youtube.
     -> Documentação da API 
 ### Funcionamento do código principal:
- 
+[MENU PRINCIPAL] BUSCADOR DE CNPJ
+ ├── 1. Buscar CNPJ
+ │       └── Pede o CNPJ, consome a API e salva no JSON.
+ │
+ ├── 2. Exibir lista de CNPJ
+ │       ├── 1. Exibição simples  -> Mostra os dados brutos aninhados.
+ │       └── 2. Exibição tabular  -> Organiza as empresas em colunas alinhadas.
+ │
+ ├── 3. Filtrar CNPJs
+ │       ├── 1. Filtrar dados de um único CNPJ -> Busca direta O(1) na memória.
+ │       └── 2. Outros Filtros -> Submenu por UF, Município ou Natureza Jurídica.
+ │
+ ├── 4. Editar dados manualmente
+ │       ├── 1. Adicionar Empresa Manualmente  -> Cria um registro do zero sem API.
+ │       └── 2. Editar dados de CNPJ existente -> Navega por chaves e subdicionários para alterar valores.
+ │
+ └── 5. Sair
+         └── Encerra o sistema.
