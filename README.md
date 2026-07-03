@@ -7,4 +7,4 @@ Repositório para poder guardar os meus aprendizados durante o curso de python d
 
 ### Projetos secundários com objetivo de aprendizado:
     - [[manipulador-de-csv.md]]
-    -
+    - [[Buscador-de-cnpj]]
