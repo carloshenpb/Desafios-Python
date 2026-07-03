@@ -236,6 +236,14 @@ def adicionar_dados_json():
         print(f'ERRO: {erro.__class__.__name__} : {erro}')
 
 def edicao_dados_cnpj(cnpj):
+    """
+    Permite a edição interativa dos dados de uma empresa específica no arquivo JSON local.
+    Navega pelas chaves principais, subdicionários ('endereço') e listas aninhadas ('telefones'), 
+    solicitando os novos valores ao usuário e salvando a estrutura atualizada no disco.
+
+    Argumentos:
+        cnpj (str ou int): O CNPJ da empresa que sofrerá a alteração.
+    """
     cnpj = ''.join(caractere for caractere in str(cnpj) if caractere.isdigit())
     filtrar_cnpj_especifico(cnpj)
     print('-='*60)
@@ -243,15 +251,12 @@ def edicao_dados_cnpj(cnpj):
     try:
         with open(arquivo_padrao, "r", encoding="utf-8") as arquivo:
             empresas = json.load(arquivo)
-    except Exception as erro:
-        print(f'ERRO AO ABRIR O ARQUIVO: {erro.__class__.__name__} -> {erro} ')
-    try:
         dados_empresa = empresas[cnpj]
         print('**'*60)
         if dado_editar in dados_empresa:
             if dado_editar == 'contatos':
                 contatos = dados_empresa ['contatos']   
-                print(f'e-mail : {contatos['e-mail']}')
+                print(f'e-mail : {contatos["e-mail"]}')
                 telefones = contatos.get('telefones', [])
                 print('telefones : ')
                 for num, telefone in enumerate(telefones, start=1):

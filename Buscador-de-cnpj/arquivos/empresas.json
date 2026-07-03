@@ -526,5 +526,33 @@
                 }
             ]
         }
+    },
+    "90888787000278": {
+        "nome fantasia": "TechBoys",
+        "razão social": "Tech Boys Techonologias LTDA",
+        "cnpj": "90888787000278",
+        "natureza jurídica": "Sociedade Empresária Limitada",
+        "endereço": {
+            "tipo logradouro": "Rua",
+            "logradouro": "Carlos Drummond de Andrade",
+            "número da residência": "61",
+            "complemento": "S/C",
+            "bairro": "Vale Dourado",
+            "municipio": "Petrolina",
+            "uf": "PE"
+        },
+        "contatos": {
+            "e-mail": "techboysenterprise@outlook.com",
+            "telefones": [
+                {
+                    "ddd": "87",
+                    "número_telefone": "991448059"
+                },
+                {
+                    "ddd": 87,
+                    "número_telefone": 99876633
+                }
+            ]
+        }
     }
 }
